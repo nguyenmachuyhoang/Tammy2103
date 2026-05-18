@@ -19,20 +19,21 @@
             text-align: center;
         }
         
-        /* Container bọc toàn bộ nội dung để nút phóng to không làm vỡ bố cục */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         h1 {
             color: #ff3385;
             font-size: 32px;
-            margin: 15px 20px 30px 20px;
-            line-height: 1.4;
+            margin: 15px 10px 30px 10px;
+            line-height: 1.5;
             transition: 0.3s;
         }
 
@@ -40,7 +41,7 @@
             width: 250px;
             border-radius: 15px;
             margin-bottom: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Thêm viền bóng cho ảnh nghiêm chỉnh hơn */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
         }
 
         .buttons {
@@ -49,7 +50,7 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
-            flex-wrap: wrap; /* Cho phép rớt dòng nếu nút Đồng ý quá to */
+            flex-wrap: wrap; 
         }
 
         button {
@@ -62,7 +63,7 @@
             border-radius: 8px;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease; /* Hiệu ứng phình to/thu nhỏ mượt mà */
+            transition: all 0.3s ease; 
         }
 
         #btn-yes {
@@ -83,7 +84,7 @@
     <div class="container">
         <img id="cute-img" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXR4bmE0czI4NGJycHR3dmt5aWY5aWwwenBia2ppM3Nsc2k0ZGJuMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SrKbU4TRDgN8apkkES/giphy.gif" alt="Sad GIF">
         
-        <h1 id="question1">Tâm ơi, tha lỗi cho Maxz nhóooo 😭</h1>
+        <h1 id="question1">Tâm ơi, tha lỗi cho Anh nhóooo 😭</h1>
         
         <div class="buttons">
             <button id="btn-yes" onclick="accepted()">Em chấp nhận</button>
@@ -94,22 +95,30 @@
     <script>
         let noClickCount = 0;
 
-        // Danh sách 5 GIF bạn cung cấp
+        // DANH SÁCH 9 GIF: 5 cũ + 4 mới
         const sadGifs = [
             "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3MHJwbm80MzdtMmxraDBpem9mMHIxZjY4NzgxdWhla3N3NndnZmc1MSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QW2ccpbEdeI5UBugCh/giphy.gif",
             "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2Ixcmt1b3JyYXM0MmZ4ano4c2dkZGQwYm9zMWc1OXUxN3Byc3F3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HcAxkcimIhBocYQRc1/giphy.gif",
             "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N3h2b3FwZjUzcWlwaTl4ZTBsYWU5N3JiYWRkbjViaXZuOXEwMnVoYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oJvNuFioFPhKSNXwI6/giphy.gif",
             "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTZyY216bDJ4MWx1Y3ZqY3c2NDhsaTJpNnQwNHVnbXo4NzFtZnlycyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L0crbpKuc6DmFsWa00/giphy.gif",
-            "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bjFrM3Vha3IzZDF6ZXBhYWY2N2x1aHFwZXZyYTN0NXA4b3V4NW5qYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7IjMP2aWsAEYATMWhW/giphy.gif"
+            "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bjFrM3Vha3IzZDF6ZXBhYWY2N2x1aHFwZXZyYTN0NXA4b3V4NW5qYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7IjMP2aWsAEYATMWhW/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bHp0aWo2YTFhdGNoZG9kcW9yMHR3OW53a2ZoZDNqamJ3bnFucXlyMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TpCkDW3KFdQ2ircOey/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3cGtpamh5eWN5ZzJ0Y3U3a2NkbnFyY2hhYWxxdzBhcnN3NXo4bXMybiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/RvO4oyf6Hhvek3n80W/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dXp4cjZtZHBtcGxwY24xazYzZTQzanpkczdqdHBlcnhsYndqOHFtMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/umk922zX3bVDEyE19D/giphy.gif",
+            "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjU5ampuNWU3NXJxY2djcnJmZXJza3lybncyMWwybHFtbHJpeWZlMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5j7hc4i67rvSP1sYSQ/giphy.gif"
         ];
 
-        // Lời xin lỗi nghiêm túc, chân thành tăng dần mức độ
+        // 9 Lời xin lỗi nghiêm túc tương ứng
         const apologies = [
             "Anh thực sự biết lỗi rồi...",
             "Bé tha lỗi cho Anh nha 🥺",
             "Anh hứa sẽ không bao giờ làm bé buồn như vậy nữa",
             "Xin Bé đừng giận Anh nữa mà 😭",
-            "Anh ngàn lần xin lỗi Em ạ..."
+            "Anh ngàn lần xin lỗi Em ạ...",
+            "Trái tim anh đau lắm khi thấy em im lặng",
+            "Làm ơn, cho anh một cơ hội sửa sai nhé",
+            "Năn nỉ em đó, đừng giận anh nữa mờ",
+            "Anh xin lỗi, xin lỗi em rất nhiều..."
         ];
 
         function refuse() {
@@ -120,25 +129,23 @@
             const img = document.getElementById('cute-img');
             const text = document.getElementById('question1');
 
-            // 1. Đổi hình ảnh (Giới hạn ở hình cuối cùng nếu bấm quá nhiều lần)
             const gifIndex = Math.min(noClickCount - 1, sadGifs.length - 1);
             img.src = sadGifs[gifIndex];
 
-            // 2. Đổi text xin lỗi
             const textIndex = Math.min(noClickCount - 1, apologies.length - 1);
             text.innerText = apologies[textIndex];
 
-            // 3. Phóng to nút Đồng Ý (Mỗi lần tăng thêm 25px font chữ và padding)
+            // Phóng to nút Đồng Ý (Chỉnh lại tỉ lệ tăng để nút không vỡ màn hình quá nhanh khi có tới 9 bước)
             const baseFontSize = 20;
-            const newFontSize = baseFontSize + (noClickCount * 25);
-            const newPaddingV = 12 + (noClickCount * 10);
-            const newPaddingH = 25 + (noClickCount * 20);
+            const newFontSize = baseFontSize + (noClickCount * 15); // Giảm mức tăng xuống 15
+            const newPaddingV = 12 + (noClickCount * 8);
+            const newPaddingH = 25 + (noClickCount * 15);
             
             btnYes.style.fontSize = newFontSize + 'px';
             btnYes.style.padding = `${newPaddingV}px ${newPaddingH}px`;
 
-            // 4. Thu nhỏ dần nút Không
-            const noFontSize = Math.max(10, 20 - (noClickCount * 2)); // Nhỏ nhất là 10px
+            // Thu nhỏ nút Không
+            const noFontSize = Math.max(10, 20 - (noClickCount * 2)); 
             btnNo.style.fontSize = noFontSize + 'px';
             btnNo.style.padding = '8px 15px';
         }
@@ -148,26 +155,21 @@
             const q1 = document.getElementById('question1');
             const buttons = document.querySelector('.buttons');
 
-            // Đổi sang ảnh Happy chốt kèo
             img.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2xmaThvMXh6bjdpYXR6NTR1d21mbTl4Z2Y4c3RhYnQxaTE4dGlsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vY2fNDZqwtWQ48YoZ9/giphy.gif"; 
             
-            // Chỉnh lại kích thước chữ và giãn dòng để đoạn văn dài hiển thị đẹp, dễ đọc trên điện thoại
             q1.style.fontSize = "21px";
             q1.style.lineHeight = "1.6";
             
-            // Lời xin lỗi da diết và chốt kèo Haidilao
-            q1.innerHTML = "Anh ngàn lần xin lỗi vì những hành động bồng bột đã làm em tổn thương. Nhìn em buồn, tim anh thực sự rất đau. Anh biết mình sai rồi... 🥺<br><br>Cảm ơn em vì đã seen tin nhắn này. Để bù đắp cho những giọt nước mắt của em...<br>🎉 Ting ting! Chúc mừng bé đã trúng 1 bữa buffet Hadilao vào cuối tuần này!<br>Liên lạc qua Anh để nhận thưởng ngay nhé. Thương em nhiều lắm! IUUUU ❤️";
+            q1.innerHTML = "Anh ngàn lần xin lỗi vì những hành động bồng bột đã làm em tổn thương. Nhìn em buồn, tim anh thực sự rất đau. Anh biết mình sai rồi... 🥺<br><br>Cảm ơn em vì đã chịu tha thứ cho anh. Để bù đắp cho những giọt nước mắt của em...<br>🎉 Ting ting! Chúc mừng bé đã trúng 1 bữa buffet Hadilao vào cuối tuần này!<br>Liên lạc qua Anh để nhận thưởng ngay nhé. Thương em nhiều lắm! IUUUU ❤️";
             
-            // Giấu nút
             buttons.style.display = 'none';
 
-// LƯU Ý: Khối lệnh lấy IP động và gửi Email nằm ở đây
             fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                let userIP = data.ip; // Lấy được IP thành công
+                let userIP = data.ip; 
 
-                // Gửi Email thông báo kèm theo IP về gmail của bạn
+                // LƯU Ý: Thay EMAIL_CUA_BAN bằng email của bạn
                 return fetch("https://formsubmit.co/ajax/nguyenmachuyhoang@gmail.com", {
                     method: "POST",
                     headers: { 
@@ -183,8 +185,7 @@
             })
             .then(response => console.log("Gửi mail thành công kèm IP"))
             .catch(error => {
-                console.log("Lỗi lấy IP (hoặc bị chặn do Adblock), tiến hành gửi mail mặc định không IP");
-                // Phương án dự phòng: Nếu thiết bị của cô ấy chặn không cho lấy IP, hệ thống vẫn gửi mail báo chấp nhận về cho bạn
+                console.log("Lỗi lấy IP, tiến hành gửi mail mặc định không IP");
                 fetch("https://formsubmit.co/ajax/nguyenmachuyhoang@gmail.com", {
                     method: "POST",
                     headers: { 
