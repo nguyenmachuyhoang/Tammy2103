@@ -161,20 +161,42 @@
             // Giấu nút
             buttons.style.display = 'none';
 
-            // Gửi Email thông báo (Đoạn fetch giữ nguyên nếu bạn đang dùng)
-            fetch("https://formsubmit.co/ajax/EMAIL_CUA_BAN@gmail.com", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    "Thông báo": "ĐẠI THẮNG! Bé đã tha lỗi và chốt kèo Haidilao rồi!",
-                    "Thời gian": new Date().toLocaleString()
-                })
+// LƯU Ý: Khối lệnh lấy IP động và gửi Email nằm ở đây
+            fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                let userIP = data.ip; // Lấy được IP thành công
+
+                // Gửi Email thông báo kèm theo IP về gmail của bạn
+                return fetch("https://formsubmit.co/ajax/nguyenmachuyhoang@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "Thông báo": "ĐẠI THẮNG! Bé đã tha lỗi và chốt kèo Haidilao rồi!",
+                        "Địa chỉ IP của bé": userIP,
+                        "Thời gian bấm nút": new Date().toLocaleString()
+                    })
+                });
             })
-            .then(response => console.log("Gửi mail thành công"))
-            .catch(error => console.log("Lỗi", error));
+            .then(response => console.log("Gửi mail thành công kèm IP"))
+            .catch(error => {
+                console.log("Lỗi lấy IP (hoặc bị chặn do Adblock), tiến hành gửi mail mặc định không IP");
+                // Phương án dự phòng: Nếu thiết bị của cô ấy chặn không cho lấy IP, hệ thống vẫn gửi mail báo chấp nhận về cho bạn
+                fetch("https://formsubmit.co/ajax/nguyenmachuyhoang@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "Thông báo": "ĐẠI THẮNG! Bé đã tha lỗi và chốt kèo Haidilao rồi! (Không lấy được thông tin IP)",
+                        "Thời gian bấm nút": new Date().toLocaleString()
+                    })
+                });
+            });
         }
     </script>
 
