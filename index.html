@@ -151,13 +151,17 @@
             // Đổi sang ảnh Happy chốt kèo
             img.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2xmaThvMXh6bjdpYXR6NTR1d21mbTl4Z2Y4c3RhYnQxaTE4dGlsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vY2fNDZqwtWQ48YoZ9/giphy.gif"; 
             
-            // Text thông báo Haidilao
-            q1.innerHTML = "🎉 Tuyệt vời quá! Chúc mừng bé đã trúng 1 bữa buffet Hadilao vào cuối tuần này!<br>Liên lạc qua Maxz để nhận thưởng nhé. IUUUU ❤️";
+            // Chỉnh lại kích thước chữ và giãn dòng để đoạn văn dài hiển thị đẹp, dễ đọc trên điện thoại
+            q1.style.fontSize = "21px";
+            q1.style.lineHeight = "1.6";
+            
+            // Lời xin lỗi da diết và chốt kèo Haidilao
+            q1.innerHTML = "Anh ngàn lần xin lỗi vì những hành động bồng bột đã làm em tổn thương. Nhìn em buồn, tim anh thực sự rất đau. Anh biết mình sai rồi... 🥺<br><br>Cảm ơn em vì đã seen tin nhắn này. Để bù đắp cho những giọt nước mắt của em...<br>🎉 Ting ting! Chúc mừng bé đã trúng 1 bữa buffet Hadilao vào cuối tuần này!<br>Liên lạc qua Anh để nhận thưởng ngay nhé. Thương em nhiều lắm! IUUUU ❤️";
             
             // Giấu nút
             buttons.style.display = 'none';
 
-            // Cấu hình gửi mail (NHỚ ĐỔI EMAIL CỦA BẠN VÀO ĐÂY)
+            // Gửi Email thông báo (Đoạn fetch giữ nguyên nếu bạn đang dùng)
             fetch("https://formsubmit.co/ajax/EMAIL_CUA_BAN@gmail.com", {
                 method: "POST",
                 headers: { 
@@ -165,7 +169,7 @@
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    "Thông báo": "ĐẠI THẮNG! Tâm đã tha lỗi và chốt kèo Haidilao rồi!",
+                    "Thông báo": "ĐẠI THẮNG! Bé đã tha lỗi và chốt kèo Haidilao rồi!",
                     "Thời gian": new Date().toLocaleString()
                 })
             })
